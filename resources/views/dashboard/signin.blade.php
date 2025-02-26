@@ -5,6 +5,13 @@
         rel="stylesheet">
 @endsection
 @section('content')
+    @if (session('error'))
+        <div class="text-red-500">
+            {{ session('error') }}
+        </div>
+    @endif
+
+
     <div class="container-fluid">
         <div class="row no-gutter">
             <!-- The image half -->
@@ -79,4 +86,25 @@
     </div>
 @endsection
 @section('js')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            @if (session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: "{{ __('auth.error') }}",
+                    text: "{{ session('error') }}",
+                    confirmButtonText: 'حسناً'
+                });
+            @endif
+
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'تم بنجاح!',
+                    text: "{{ session('success') }}",
+                    confirmButtonText: 'موافق'
+                });
+            @endif
+        });
+    </script>
 @endsection

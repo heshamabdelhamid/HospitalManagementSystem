@@ -25,6 +25,7 @@
 <script src="{{ URL::asset('dashboard/plugins/sidebar/sidebar-custom.js') }}"></script>
 <!-- Eva-icons js -->
 <script src="{{ URL::asset('dashboard/js/eva-icons.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @yield('js')
 <!-- Sticky js -->
 <script src="{{ URL::asset('dashboard/js/sticky.js') }}"></script>
