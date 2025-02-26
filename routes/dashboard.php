@@ -1,19 +1,18 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\{
     DashboardController,
-    Admin\AuthController,
+    Admin\AuthController
 };
 
-Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+use Illuminate\Support\Facades\Route;
 
-    Route::middleware('guest')->group(function () {
-        Route::get('login', [AuthController::class, 'login'])->name('login.page');
-        Route::post('login', [AuthController::class, 'loginPost'])->name('login.post');
-    });
+Route::middleware('guest')->group(function () {
+    Route::get('login', [AuthController::class, 'login'])->name('login.page');
+    Route::post('login', [AuthController::class, 'loginPost'])->name('login.post');
+});
 
-    Route::middleware('auth:admin')->group(function () {
-        Route::get('dashboard_admin', [DashboardController::class, 'index']);
-    });
+Route::middleware('admin')->group(function () {
+    Route::get('index', [DashboardController::class, 'index'])->name('index');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
